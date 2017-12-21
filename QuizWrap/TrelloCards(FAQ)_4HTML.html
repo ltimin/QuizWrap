@@ -1,0 +1,177 @@
+﻿<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name=trello content="">
+    <title>Trello Cards #4</title>
+
+    <!-- Custom styles for this template -->
+    <link href="/materialize/css/materialize.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <style>
+        nav {
+            background-color: #d32f2f;
+        }
+        .btn {
+            background-color: #d32f2f;
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        input[type=password]:not(.browser-default):focus:not([readonly]) {
+            border-bottom-color: #d32f2f;
+        }
+
+        input[type=email]:not(.browser-default):focus:not([readonly]) {
+            border-bottom-color: #d32f2f;
+        }
+
+        .btn:hover, .btn-large:hover {
+            background-color: #d32f2f;
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(215, 70, 70, 0.75), rgba(0, 0, 0, 0));
+            margin-bottom: 20px;
+        }
+
+        /* label color */
+        .input-field label {
+            color: #d32f2f !important;
+            font-weight: 400 !important;
+        }
+
+        /* label underline focus color */
+        .input-field input[type=text]:focus {
+            border-bottom: 1px solid #808080 !important;
+            box-shadow: 0 1px 0 0 #F5CECECE !important;
+        }
+
+        .initialized {
+            color: #d32f2f !important;
+            font-weight: 500;
+        }
+
+        .dropdown-content li > span {
+            color: #d32f2f;
+        }
+        #logout {
+            margin-right: 20px;
+        }
+        #faqNav {
+            margin-left: 20px;
+        }
+        .tabs .tab a {
+            color: rgba(6, 6, 6, 0.7);
+            font-weight:bold;
+        }
+        .tabs .tab a:hover, .tabs .tab a.active {
+                color: #d32f2f;
+            }
+        </style>
+</head>
+
+<body>
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="mobile-demo" class="side-nav">
+                <li><a href="TrelloCards(HomePage)_3HTML.html">Home</a></li>
+                <li><a href="TrelloCards(FAQ)_4HTML.html">FAQ</a></li>
+                <li><a href="TrelloCards(Login)_2HTML.html" id="logout">Log Out</a></li>
+            </ul>
+            <div class="nav-wrapper">
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="TrelloCards(FAQ)_4HTML.html" id="faqNav">FAQ</a></li>
+                </ul>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="TrelloCards(Login)_2HTML.html" id="logout">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs tabs-fixed-width" id="faq"></ul>
+        </div>
+    </div>
+
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Create New Question</a>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col s8  card-panel amber lighten-5 push-s2 center hoverable">
+                        <form class="col s12" id="faqValidate">
+                            <div class="row">
+                                <div class="input-field col s8 offset-s2">
+                                    <select id="faqCategoryDropDown">
+                                        <option value="" disabled selected >FAQ Category</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s8 offset-s2">
+                                        <input id="question" type="text" class="validate" name="Question">
+                                        <label for="question">Question</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s8 offset-s2">
+                                        <input id="answer" type="text" class="validate" name="Answer">
+                                        <label for="answer">Answer</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s8 offset-s2">
+                                        <input id="displayO" type="number" class="validate" name="Display Order">
+                                        <label for="display order">Display Order</label>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <button class="modal-action modal-close waves-effect waves-green btn-flat" type="button" name="action">Cancel</button>
+                                    <button class="btn waves-effect waves-light modal-close" type="button" name="action" id="submit">Submit</button>
+                                </div>
+</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start of scripts -->
+    <!-- jQuery library -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <!-- JavaScript -->
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
+    <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+    <script type="text/javascript" src="TrelloCards_AJAX.js"></script>
+    <script type="text/javascript" src="TrelloCards_4JS.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+             $('select').material_select();
+            $('ul.tabs').tabs();
+            $('ul.tabs').tabs('select_tab', 'tab_id');
+            $('.modal').modal();
+            $('.tooltipped').tooltip({ delay: 50 });
+        });
+    </script>
+</body>
+
+</html>
