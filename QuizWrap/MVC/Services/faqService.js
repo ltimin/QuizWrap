@@ -16,12 +16,8 @@
                 url: api + "faqcategories",
                 withCredentials: true
             })
-            .then(
-                response => {null
-                    // response.data.items.forEach(function (element) {
-                    //     console.log(element.name)
-                    // })
-                },
+            .then( 
+                null,
                 error => $q.reject(error.data.message || error.data.errors[0])
                 );
             return promise;

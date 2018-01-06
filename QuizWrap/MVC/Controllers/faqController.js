@@ -4,21 +4,19 @@
     angular.module('QuizWrapApp')
         .controller('FaqController', FaqController);
 
-    FaqController.$inject = ['FaqService',"HomeService"];
+    FaqController.$inject = ['FaqService',"HomeService", '$timeout'];
     
-    function FaqController(FaqService, HomeService) {
+    function FaqController(FaqService, HomeService, $timeout) {
         (this.getFaq=()=>{
             const promise = FaqService.getFaqTabs();
             promise.then(
                 response => {
-                    response.data.items.forEach(function (element) {
-                        console.log(element.name)
-                    })
-                    // response.data.items.forEach(function (element) {
-                    //     return element.name;
-                    // });
-                    // console.log(element.name)
-                    // this.faqTabs = element.name;
+                   this.faqTabs = response.data.items;
+                   
+                   $timeout(function(){
+                    $('select').material_select();
+                   });
+                    
                 },
                 error => {
                     Materialize.toast("Houston, we have a problem!!", 1500);

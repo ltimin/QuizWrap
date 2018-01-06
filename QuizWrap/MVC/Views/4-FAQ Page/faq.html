@@ -61,13 +61,15 @@
             </div>
         </nav>
     <!-- Tabs -->
+    <br>
         <div class="row">
-            <div class="col s12">
-                <ul class="tabs tabs-fixed-width" id="faq" ng-model="fc.tabs">
-                    <option ng-repeat="tab in fc">{{fc.faqTabs}}</option>  
-                </ul>
-            </div>
+            <div class="col s3 offset-s3">
+                <select class="material-select" ng-model="fc.value" >
+                <option value="" disabled selected>Choose Category</option>    
+                <option ng-repeat="value in fc.faqTabs">{{value.name}}</option>
+                </select>
         </div>
+    </div>
 <!-- Modal Trigger -->
         <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Create New Question</a>
         <!-- Modal Structure -->
