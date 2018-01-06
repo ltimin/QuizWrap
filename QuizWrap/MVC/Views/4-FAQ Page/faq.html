@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html ng-app="QuizWrapApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name=trello content="">
+    <title>My FAQ</title>
+
+    <!-- CSS-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../../Resources/materialize/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="faq.css">
+</head>
+
+<body>
+    <div ng-controller="FaqController as fc">
+    <!-- Nav  -->
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+                <a class="brand-logo center">
+                    <span id="userName"></span>My FAQ</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul id="mobile-demo" class="side-nav">
+                    <li>
+                        <a href="../3-Home Page/index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="../4-FAQ Page/faq.html" id="faqNav">My FAQ</a>
+                    </li>
+                    <li>
+                        <a href="../5-Quizzes Page/quiz.html"> My Quizzes</a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="../2-LogIn Page/login.html" id="logout" ng-click="fc.loggingOut()">Log Out</a>
+                    </li>
+                </ul>
+                <div class="nav-wrapper">
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li>
+                            <a href="../3-Home Page/index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="../4-FAQ Page/faq.html" id="faqNav">My FAQ</a>
+                        </li>
+                        <li>
+                            <a href="../5-Quizzes Page/quiz.html">My Quizzes</a>
+                        </li>
+                    </ul>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a href="../2-LogIn Page/login.html" id="logout" ng-click="fc.loggingOut()">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <!-- Tabs -->
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs tabs-fixed-width" id="faq" ng-model="fc.tabs">
+                    <option ng-repeat="tab in fc">{{fc.faqTabs}}</option>  
+                </ul>
+            </div>
+        </div>
+<!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Create New Question</a>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s8  card-panel amber lighten-5 push-s2 center hoverable">
+                            <form class="col s12" id="faqValidate">
+                                <div class="row">
+                                    <div class="input-field col s8 offset-s2">
+                                        <select id="faqCategoryDropDown">
+                                            <option value="" disabled selected>FAQ Category</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s8 offset-s2">
+                                        <input id="displayO" type="number" class="validate" name="Display Order">
+                                        <label for="display order">Display Order</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s8 offset-s2">
+                                            <input id="question" type="text" class="validate" name="Question">
+                                            <label for="question">Question</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s8 offset-s2">
+                                            <input id="answer" type="text" class="validate" name="Answer">
+                                            <label for="answer">Answer</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <button class="modal-action modal-close waves-effect waves-green btn-flat" type="button" name="action">Cancel</button>
+                                    <button class="btn waves-effect waves-light modal-close" type="submit" name="action" id="submit" disabled>Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start of scripts -->
+    <!--Template For Faq-->
+    <script type="text/html" id="faqTemplate">
+        <ul class="collapsible" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header faqHeader"><i class="material-icons">question_answer</i>First</div>
+                <div class="collapsible-body"><span class="faqInfo"></span></div>
+            </li>
+            </ul>
+    </script>
+<!-- Start of scripts -->
+    <script src="../../../Resources/jquery-3.2.1.min.js"></script>
+    <!-- JavaScript -->
+    <!-- AngularJS -->
+    <script src="../../../Resources/angular.min.js"></script>
+    <!-- CSS JavaScript -->
+    <script src="../../../Resources/materialize/js/materialize.min.js"></script>
+    <!-- Links to files -->
+    <script type="text/javascript" src="../../Apps/apps.js"></script>
+    <script type="text/javascript" src="../../Controllers/faqController.js"></script>
+    <script type="text/javascript" src="../../Services/homeService.js"></script>
+    <script type="text/javascript" src="../../Services/faqService.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('select').material_select();
+            $('ul.tabs').tabs();
+            $('ul.tabs').tabs('select_tab', 'tab_id');
+            $('.modal').modal();
+            $('.tooltipped').tooltip({ delay: 50 });
+            $(".button-collapse").sideNav();
+        });
+    </script>
+</body>
+
+</html>

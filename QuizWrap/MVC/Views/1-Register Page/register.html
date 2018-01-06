@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html ng-app='QuizWrapApp'>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name=trello content="">
+    <title>Register</title>
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../../Resources/materialize/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="register.css">
+</head>
+
+<body>
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a class="brand-logo center">Register </a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="mobile-demo" class="side-nav">
+                <li>
+                    <a href="../2-LogIn Page/login.html">Login</a>
+                </li>
+            </ul>
+            <div class="nav-wrapper">
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a href="../2-LogIn Page/login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" ng-controller="RegisterController as rc">
+        <div class="row">
+            <div class="col s8  card-panel amber lighten-5 push-s2 center hoverable">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" class="validate" ng-model="rc.fName">
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input type="text" class="validate" ng-model="rc.lName">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="password" class="validate" ng-model="rc.pword">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="input-field col s6" ng-model="rc.conpword">
+                            <input type="password" class="validate">
+                            <label for="password">Confirm Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="email" class="validate" ng-model="rc.email">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <input type="button" class="btn btn-primary" value="Submit" ng-click="rc.submit()">
+                    <br />
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- Start of scripts -->
+    <!-- jQuery library -->
+    <script  src="../../../Resources/jquery-3.2.1.min.js"></script>
+    <!-- JavaScript -->
+    <!-- AngularJS -->
+    <script src="../../../Resources/angular.min.js"></script>
+    <!-- CSS JavaScript -->
+    <script src="../../../Resources/materialize/js/materialize.min.js"></script>
+    <!-- Links to files -->
+    <script type="text/javascript" src="../../Apps/apps.js"></script>
+    <script type="text/javascript" src="../../Controllers/registerController.js"></script>
+    <script type="text/javascript" src="../../Services/registerService.js"></script>
+    <!-- Startup functions -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".button-collapse").sideNav();
+        });
+    </script>
+
+</body>
+</html>
