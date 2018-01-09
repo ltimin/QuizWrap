@@ -1,31 +1,30 @@
-﻿<!DOCTYPE html>
-<html ng-app="QuizWrapApp">
+﻿<!-- <!DOCTYPE html>
+<html ng-app="QuizWrapApp"> -->
 
-<head>
+<!-- <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name=trello content="">
-    <title>My FAQ</title>
+    <title>My FAQ</title> -->
 
     <!-- CSS-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../../../Resources/materialize/css/materialize.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="faq.css">
-</head>
+    <link rel="stylesheet" type="text/css" href="faq.css"> -->
+<!-- </head> -->
 
-<body>
-    <div ng-controller="FaqController as fc">
-<!-- Nav  -->
+<!-- <body> -->
+<!-- Nav 
         <nav class="nav-extended">
             <div class="nav-wrapper">
                 <a class="brand-logo center">
                     <span id="userName"></span>My FAQ</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse">
                     <i class="material-icons">menu</i>
-                </a>
-                <ul id="mobile-demo" class="side-nav">
+                </a> -->
+                <!-- <ul id="mobile-demo" class="side-nav">
                     <li>
                         <a href="../3-Home Page/index.html">Home</a>
                     </li>
@@ -59,21 +58,22 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 <!-- Tabs -->
+<div ng-controller="FaqController as fc">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="../../../Resources/materialize/css/materialize.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="faq.css">
     <br>
-        <!-- <div class="row">
+        <div class="row">
             <div class="col s3 offset-s3">
-                    <ul class="tabs" ng-model="fc.value">
-                            <li class="tab col s3" ng-repeat="value in fc.faqTabs">><a href="#test1">{{value.name}}</a></li>
-                         
+                    <ul class="tabs"> 
+                <li class="tab col s3" ng-repeat="categoryName in fc.faqList">
+                    <a href="#">{{categoryName.category}}</a>
+                </li>   
                     </ul>
-                <select class="material-select" ng-model="fc.value" >
-                <option value="" disabled selected>Choose Category</option>    
-                <option ng-repeat="value in fc.faqTabs">{{value.name}}</option>
-                </select>
         </div>
-    </div> -->
+    </div>
 <!-- Modal Trigger -->
         <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Create New Question</a>
         <!-- Modal Structure -->
@@ -125,20 +125,41 @@
     <div class="row">
         <div class="col s12 m4 l4 faqList">
           <div class="card grey darken-4">
-            <div class="card-content white-text" ng-repeat="n in fam track by index">
-              <span class="card-title"></span>
-              <h4 ng-model="fc.userCategory" >Guard</h4>
+            <div class="card-content white-text">
+              <h4 >Guard</h4>
               <h6>Question:</h6>  
-              <p ng-model="fc.userQuestion">I am a very simple card. I am good at containing small bits of information.</p>
+              <p >I am a very simple card. I am good at containing small bits of information.</p>
               <h6>Answer:</h6>
-              <p ng-model="fc.userAnswer">I am convenient because I require little markup to use effectively.</p>
+              <p >I am convenient because I require little markup to use effectively.</p>
+              <div class="col s12 m4 l4 right offset-s12">
+                    <h6>Display Order: <span id="DOtext"> 6</span></h6>
+              </div>
+              <br>
             </div>
             <div class="card-action">
               <a href="#" id="edit">Edit</a>
               <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
             </div>
           </div>
-        </div>
+          </div>
+          
+          <div class="col s12 m4 l4" ng-repeat="item in fc.faqList | filter:{category: item.category}">
+                <div class="card grey darken-4">
+                  <div class="card-content white-text">
+                    <span class="card-title"></span>
+                    <h4 ng-model="fc.userCategory" >{{item.category}}</h4>
+                    <h6>Question:</h6>  
+                    <p ng-model="fc.userQuestion"></p>
+                    <h6>Answer:</h6>
+                    <p ng-model="fc.userAnswer"></p>
+                    <h6 ng-model="fc.userDisplayOrder"></h6>
+                  </div>
+                  <div class="card-action">
+                    <a href="#" id="edit">Edit</a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                  </div>
+                </div>
+                </div>
           <!--End of Row-->
         </div>
 <!-- Start of scripts -->
@@ -153,6 +174,8 @@
                     <p>I am a very simple card. I am good at containing small bits of information.</p>
                     <h6>Answer:</h6>
                     <p>I am convenient because I require little markup to use effectively.</p>
+                    <h6>Display Order:</h6>
+                    <p>5</p>
                   </div>
                   <div class="card-action">
                     <a href="#" id="edit">Edit</a>
@@ -162,18 +185,20 @@
               </div>
     </script>
 </div>
-    <script src="../../../Resources/jquery-3.2.1.min.js"></script>
+    <!-- <script src="../../../Resources/jquery-3.2.1.min.js"></script> -->
     <!-- JavaScript -->
     <!-- AngularJS -->
-    <script src="../../../Resources/angular.min.js"></script>
+    <!-- <script src="../../../Resources/angular.min.js"></script> -->
+    <!--UI router-->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script> -->
     <!-- CSS JavaScript -->
-    <script src="../../../Resources/materialize/js/materialize.min.js"></script>
+    <!-- <script src="../../../Resources/materialize/js/materialize.min.js"></script> -->
     <!-- Links to files -->
-    <script type="text/javascript" src="../../Apps/apps.js"></script>
+    <!-- <script type="text/javascript" src="../../Apps/apps.js"></script>
     <script type="text/javascript" src="../../Controllers/faqController.js"></script>
     <script type="text/javascript" src="../../Services/homeService.js"></script>
-    <script type="text/javascript" src="../../Services/faqService.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" src="../../Services/faqService.js"></script> -->
+    <!-- <script type="text/javascript">
         $(document).ready(function () {
             $('select').material_select();
             $('ul.tabs').tabs();
@@ -182,7 +207,7 @@
             $('.tooltipped').tooltip({ delay: 50 });
             $(".button-collapse").sideNav();
         });
-    </script>
-</body>
+    </script> -->
+<!-- </body>
 
-</html>
+</html> -->

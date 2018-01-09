@@ -4,9 +4,10 @@
     angular.module('QuizWrapApp')
         .controller('FaqController', FaqController);
 
-    FaqController.$inject = ['FaqService',"HomeService", '$timeout'];
+    FaqController.$inject = ['FaqService',"HomeService", '$timeout','$state'];
     
-    function FaqController(FaqService, HomeService, $timeout) {
+    function FaqController(FaqService, HomeService, $timeout, $state) {
+        $state.go('home');
         (this.getFaq =()=> {
             const promise = FaqService.getFaqCategories();
             promise.then(
@@ -27,15 +28,9 @@
             const promise = FaqService.getUserFaq();
             promise.then(
                 response => {
-                //    this.userQuestion = response.data.items.question;
-                //    this.userAnswer =  response.data.items.answer;
-                //    this.userCategory = response.data.items.category;
-
-                //    console.log(response.data.items)
-                //    $timeout(function(){
-                //     $('select').material_select();
-                //    });
-                    
+                    let fam = response.data.items;
+                    fam.sort(function(a,b) {return a['faqCategoryId'] - b['faqCategoryId'] || a['displayOrder'] - b['displayOrder']});
+                    this.faqList = fam;
                 },
                 error => {
                     Materialize.toast("Houston, we have a problem!!", 1500);

@@ -43,16 +43,8 @@
                 url: api + "faqs/user",
                 withCredentials: true
             })
-            .then(
-                response => {
-                    let fam = response.data.items;
-                    fam.sort(function(a,b) {return a['faqCategoryId'] - b['faqCategoryId'] || a['displayOrder'] - b['displayOrder']});
-                }
-                ,
-                error => $q.reject(error.data.message || error.data.errors[0])
-        );
-            return promise;
-        };
+           return promise;}
+
         //Getting User's {id} for edit
         this.getIdUserFaq = () =>{
             const promise = $http({

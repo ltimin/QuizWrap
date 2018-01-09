@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html ng-app="QuizWrapApp">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,50 +12,6 @@
     <link href="../../../Resources/materialize/css/materialize.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="homepage.css">
 </head>
-<body>
-    <nav class="nav-extended" ng-controller="HomeController as hc">
-        <div class="nav-wrapper">
-            <a class="brand-logo center">
-                <span ng-cloak>{{hc.firstName}} {{hc.lastName}}</span>
-            </a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse">
-                <i class="material-icons">menu</i>
-            </a>
-            <ul id="mobile-demo" class="side-nav">
-                <li>
-                    <a href="../3-Home Page/index.html">Home</a>
-                </li>
-                <li>
-                    <a href="../4-FAQ Page/faq.html">FAQ</a>
-                </li>
-                <li>
-                    <a href="../5-Quizzes Page/quiz.html">Quizzes</a>
-                </li>
-                <hr>
-                <li>
-                    <a href= "" id="logout" ng-click="hc.loggingOut()">Log Out</a>
-                </li>
-            </ul>
-            <div class="nav-wrapper">
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li>
-                        <a href="../3-Home Page/index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="../4-FAQ Page/faq.html">FAQ</a>
-                    </li>
-                    <li>
-                        <a href="../5-Quizzes Page/quiz.html">Quizzes</a>
-                    </li>
-                </ul>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li>
-                        <a href="" id="logout" ng-click="hc.loggingOut()">Log Out</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 <!-- Start of scripts -->
     <script  src="../../../Resources/jquery-3.2.1.min.js"></script>
     <!-- JavaScript -->
@@ -68,12 +23,75 @@
     <script type="text/javascript" src="../../Apps/apps.js"></script>
     <script type="text/javascript" src="../../Controllers/homeController.js"></script>
     <script type="text/javascript" src="../../Services/homeService.js"></script>
+    <script type="text/javascript" src="../../Controllers/faqController.js"></script>
+    <script type="text/javascript" src="../../Services/faqService.js"></script>
+    <!--UI Router-->
+    <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
     <!-- Startup functions -->
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(".button-collapse").sideNav();
-        });
+    $(document).ready(function () {
+        $(".button-collapse").sideNav();
+        $('select').material_select();
+        $('ul.tabs').tabs();
+        $('ul.tabs').tabs('select_tab', 'tab_id');
+        $('.modal').modal();
+        $('.tooltipped').tooltip({ delay: 50 });
+    });
     </script>
+<body ng-controller="HomeController as hc">
+<!-- Nav -->
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a class="brand-logo center">
+                <span ng-cloak>{{hc.firstName}} {{hc.lastName}}</span>
+            </a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="mobile-demo" class="side-nav">
+                    <li>
+                        <a href="../3-Home Page/index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="../4-FAQ Page/faq.html" id="faqNav">My FAQ</a>
+                    </li>
+                    <li>
+                        <a ui-sref="faq"> My Quizzes</a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="../2-LogIn Page/login.html" id="logout" ng-click="hc.loggingOut()">Log Out</a>
+                    </li>
+                </ul>
+                <div class="nav-wrapper">
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li>
+                            <a href="../3-Home Page/index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="../4-FAQ Page/faq.html" id="faqNav">My FAQ</a>
+                        </li>
+                        <li>
+                            <a href="../5-Quizzes Page/quiz.html">My Quizzes</a>
+                        </li>
+                    </ul>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a href="../2-LogIn Page/login.html" id="logout" ng-click="hc.loggingOut()">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+<!--Ui-View-->
+         
+                <ui-view>
+
+                </ui-view>
+
+            
+            
+    </div>
 </body>
 
 </html>

@@ -1,1 +1,1 @@
-angular.module('QuizWrapApp', []);
+angular.module('QuizWrapApp', ['ui.router']);
