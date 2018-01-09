@@ -10,7 +10,7 @@
 
     function FaqService($http, $q) {
         //Getting the FAQ tabs
-        this.getFaqTabs=()=> {
+        this.getFaqCategories=()=> {
             const promise = $http({
                 method: "GET",
                 url: api + "faqcategories",
@@ -23,7 +23,7 @@
             return promise;
         };
         //Submitting FAQ
-        this.submitFaq = () => {
+        this.submitFaq = (submitFaqRequest) => {
             const promise = $http({
                 method: "POST",
                 url: api + "faqs",
@@ -44,7 +44,11 @@
                 withCredentials: true
             })
             .then(
-                null,
+                response => {
+                    let fam = response.data.items;
+                    fam.sort(function(a,b) {return a['faqCategoryId'] - b['faqCategoryId'] || a['displayOrder'] - b['displayOrder']});
+                }
+                ,
                 error => $q.reject(error.data.message || error.data.errors[0])
         );
             return promise;

@@ -9,7 +9,7 @@
     function RegisterController(RegisterService) {
 
         this.submit = () => {
-            // intialize the error message
+            // reset the error message
             this.errorMessage = null;
             // gathering request data
             const registerRequest = {

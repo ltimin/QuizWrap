@@ -15,7 +15,7 @@
                 url: api + "people/currentuser",
                 withCredentials: true
             })
-                .then(
+            .then(
                 null,
                 error => $q.reject(error.data.message || error.data.errors[0])
                 );

@@ -6,8 +6,7 @@
 
     HomeController.$inject = ["HomeService"];
     
-    function HomeController(HomeService) {
-        (this.getUser = () => {
+    function HomeController(HomeService) { 
         const promise = HomeService.getName();
         promise.then(
             response => {
@@ -18,7 +17,7 @@
                 Materialize.toast("Houston, we have a problem!!", 1500);
                 this.errorMessage = error;
             });
-        })();
+            
         this.loggingOut = () => {
             const promise = HomeService.logOut();
             promise.then(

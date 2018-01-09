@@ -4,8 +4,8 @@
     angular.module('QuizWrapApp')
         .service("RegisterService", RegisterService);
 
-    const api = "https://pacoima-ypi.azurewebsites.net/api/";    
-    
+    const api = "https://pacoima-ypi.azurewebsites.net/api/";
+
     RegisterService.$inject = ["$http", "$q"]
 
     function RegisterService($http, $q) {
@@ -16,7 +16,7 @@
                 data: registerRequest,
                 withCredentials: true
             })
-                .then(
+            .then(
                 null,
                 error => $q.reject(error.data.message || error.data.errors[0])
                 );

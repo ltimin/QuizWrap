@@ -17,7 +17,7 @@
 
 <body>
     <div ng-controller="FaqController as fc">
-    <!-- Nav  -->
+<!-- Nav  -->
         <nav class="nav-extended">
             <div class="nav-wrapper">
                 <a class="brand-logo center">
@@ -60,16 +60,20 @@
                 </div>
             </div>
         </nav>
-    <!-- Tabs -->
+<!-- Tabs -->
     <br>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col s3 offset-s3">
+                    <ul class="tabs" ng-model="fc.value">
+                            <li class="tab col s3" ng-repeat="value in fc.faqTabs">><a href="#test1">{{value.name}}</a></li>
+                         
+                    </ul>
                 <select class="material-select" ng-model="fc.value" >
                 <option value="" disabled selected>Choose Category</option>    
                 <option ng-repeat="value in fc.faqTabs">{{value.name}}</option>
                 </select>
         </div>
-    </div>
+    </div> -->
 <!-- Modal Trigger -->
         <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Create New Question</a>
         <!-- Modal Structure -->
@@ -81,25 +85,26 @@
                             <form class="col s12" id="faqValidate">
                                 <div class="row">
                                     <div class="input-field col s8 offset-s2">
-                                        <select id="faqCategoryDropDown">
+                                        <select id="faqCategoryDropDown" ng-model="fc.category"  ng-options="category as category.name for category in fc.faqCategories" >
                                             <option value="" disabled selected>FAQ Category</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s8 offset-s2">
-                                        <input id="displayO" type="number" class="validate" name="Display Order">
+                                        <input id="displayO" type="number" name="Display Order" ng-model="fc.displayO">
                                         <label for="display order">Display Order</label>
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s8 offset-s2">
-                                            <input id="question" type="text" class="validate" name="Question">
+                                            <input id="question" type="text" name="Question"  ng-model="fc.question">
                                             <label for="question">Question</label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s8 offset-s2">
-                                            <input id="answer" type="text" class="validate" name="Answer">
+                                            <input id="answer" type="text"name="Answer"  ng-model="fc.answer">
                                             <label for="answer">Answer</label>
                                         </div>
                                     </div>
@@ -108,7 +113,7 @@
                                 <hr>
                                 <div class="row">
                                     <button class="modal-action modal-close waves-effect waves-green btn-flat" type="button" name="action">Cancel</button>
-                                    <button class="btn waves-effect waves-light modal-close" type="submit" name="action" id="submit" disabled>Submit</button>
+                                    <button class="btn waves-effect waves-light modal-close" type="submit" name="action" id="submit" ng-click="fc.submit()">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -116,18 +121,47 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Start of scripts -->
-    <!--Template For Faq-->
-    <script type="text/html" id="faqTemplate">
-        <ul class="collapsible" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header faqHeader"><i class="material-icons">question_answer</i>First</div>
-                <div class="collapsible-body"><span class="faqInfo"></span></div>
-            </li>
-            </ul>
-    </script>
+<!-- FAQ cards -->
+    <div class="row">
+        <div class="col s12 m4 l4 faqList">
+          <div class="card grey darken-4">
+            <div class="card-content white-text" ng-repeat="n in fam track by index">
+              <span class="card-title"></span>
+              <h4 ng-model="fc.userCategory" >Guard</h4>
+              <h6>Question:</h6>  
+              <p ng-model="fc.userQuestion">I am a very simple card. I am good at containing small bits of information.</p>
+              <h6>Answer:</h6>
+              <p ng-model="fc.userAnswer">I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#" id="edit">Edit</a>
+              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
+            </div>
+          </div>
+        </div>
+          <!--End of Row-->
+        </div>
 <!-- Start of scripts -->
+    <!--Template For Faq-->
+    <script type="text/html" id="Template" ng-model="fc.userCard">
+        <div class="col s12 m4 l4">
+                <div class="card grey darken-4">
+                  <div class="card-content white-text">
+                    <span class="card-title"></span>
+                    <h4>Guard</h4>
+                    <h6>Question:</h6>  
+                    <p>I am a very simple card. I am good at containing small bits of information.</p>
+                    <h6>Answer:</h6>
+                    <p>I am convenient because I require little markup to use effectively.</p>
+                  </div>
+                  <div class="card-action">
+                    <a href="#" id="edit">Edit</a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                  </div>
+                </div>
+              </div>
+    </script>
+</div>
     <script src="../../../Resources/jquery-3.2.1.min.js"></script>
     <!-- JavaScript -->
     <!-- AngularJS -->
