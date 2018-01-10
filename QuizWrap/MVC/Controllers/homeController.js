@@ -1,35 +1,8 @@
 // IIFE
 (function() {
     'use strict';
-    const app = angular.module('QuizWrapApp')
-            app.config(RouteSetup);
-            
-            RouteSetup.$interject = ['$stateProvider'];
-            function RouteSetup($stateProvider) {
-		$stateProvider.state({
-            // route for the home page
-                name: 'home',
-				templateUrl : '/views/3-Home Page/index.html',
-				controller  : 'HomeController'
-			});
-
-			// route for the faq page
-			$stateProvider.state({
-                name: 'faq',
-				templateUrl : '../views/4-Faq Page/faq.html',
-				controller  : 'FaqController'
-			});
-
-			// route for the quizzes page
-			$stateProvider.state({
-                name: 'quizzes',
-				templateUrl : 'views/5-Quizzes Page/quiz.html',
-				controller  : 'QuizzesController'
-			});
-	};
-    app.controller('HomeController', HomeController);
-
-    app.controller('FaqController', FaqController);
+    angular.module('QuizWrapApp')
+    .controller('HomeController', HomeController);
 
     HomeController.$inject = ["HomeService"];
     

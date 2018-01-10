@@ -7,7 +7,12 @@
     FaqController.$inject = ['FaqService',"HomeService", '$timeout','$state'];
     
     function FaqController(FaqService, HomeService, $timeout, $state) {
-        $state.go('home');
+        //Materialize JQuery//
+        $(".button-collapse").sideNav();
+        $('ul.tabs').tabs();
+        $('ul.tabs').tabs('select_tab', 'tab_id');
+        $('.modal').modal();
+        
         (this.getFaq =()=> {
             const promise = FaqService.getFaqCategories();
             promise.then(
@@ -75,21 +80,6 @@
                     this.errorMessage = error;
                 });
         }
+
     };
 })();
-
-//******************************************This is for functionality populating the name which can be done later */
-
-
-        // (this.getUser = () => {
-        // const promise = HomeService.getName();
-        // promise.then(
-        //     response => {
-        //         this.firstName = response.data.item.firstName;
-        //         this.lastName = response.data.item.lastName;
-        //     },
-        //     error => {
-        //         Materialize.toast("Houston, we have a problem!!", 1500);
-        //         this.errorMessage = error;
-        //     });
-        // })();

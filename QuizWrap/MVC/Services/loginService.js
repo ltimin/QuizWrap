@@ -6,9 +6,9 @@
     
     const api = "https://pacoima-ypi.azurewebsites.net/api/";
     
-    LoginService.$inject = ['$http', '$q'];
+    LoginService.$inject = ['$http'];
 
-    function LoginService($http, $q) {
+    function LoginService($http) {
         this.login = (loginRequest) => {
             const promise = $http({
                 method: "POST",
@@ -16,10 +16,6 @@
                 data: loginRequest,
                 withCredentials: true
             })
-                .then(
-                null,
-                error => $q.reject(error.data.message || error.data.errors[0])
-                );
             return promise;
         };
     };
