@@ -6,9 +6,9 @@
 
     const api = "https://pacoima-ypi.azurewebsites.net/api/";
     
-    FaqService.$inject = ["$http", "$q"]
+    FaqService.$inject = ["$http"]
 
-    function FaqService($http, $q) {
+    function FaqService($http) {
         //Getting the FAQ tabs
         this.getFaqCategories=()=> {
             const promise = $http({
@@ -16,10 +16,6 @@
                 url: api + "faqcategories",
                 withCredentials: true
             })
-            .then( 
-                null,
-                error => $q.reject(error.data.message || error.data.errors[0])
-                );
             return promise;
         };
         //Submitting FAQ
@@ -30,10 +26,6 @@
                 withCredentials: true,
                 data: submitFaqRequest,
             })
-            .then(
-              null,
-                error => $q.reject(error.data.message || error.data.errors[0])
-                );
             return promise;
         };
         //Getting User's FAQ
@@ -43,7 +35,8 @@
                 url: api + "faqs/user",
                 withCredentials: true
             })
-           return promise;}
+           return promise;
+        };
 
         //Getting User's {id} for edit
         this.getIdUserFaq = () =>{
@@ -52,10 +45,6 @@
                 url: api + "faqs/user",
                 withCredentials: true
             })
-            .then(
-                null,
-                error => $q.reject(error.data.message || error.data.errors[0])
-                );
             return promise;
         };
         //Logging Out
@@ -65,10 +54,6 @@
                 url: api + "users/logout",
                 withCredentials: true
             })
-            .then(
-                null,
-                error => $q.reject(error.data.message || error.data.errors[0])
-                );
             return promise;
         };
     }

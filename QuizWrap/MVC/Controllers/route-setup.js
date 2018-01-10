@@ -4,10 +4,26 @@
     const app = angular.module('QuizWrapApp')
             app.config(RouteSetup);
             
-            RouteSetup.$interject = ['$stateProvider'];
-            
-            function RouteSetup($stateProvider) {
-                // route for the home page
+            RouteSetup.$interject = ['$stateProvider', '$urlRouterProvider'];
+            function RouteSetup($stateProvider, $urlRouterProvider) {
+            //Default Page
+            $urlRouterProvider.otherwise('login');
+                
+            // route for the register page
+            $stateProvider.state({
+                name: 'register',
+                url: '/register',
+				templateUrl : '1-Register Page/register.html',
+			}); 
+            // route for the login page
+            $stateProvider.state({
+                name: 'login',
+                url: '/login',
+                templateUrl : '2-LogIn Page/login.html',
+                
+            }); 
+                   
+            // route for the home page
             $stateProvider.state({
                 name: 'home',
                 url: '/home',
@@ -28,6 +44,6 @@
                 templateUrl : '5-Quizzes Page/quiz.html',
             });
             
-	};
+    };
 
 })();

@@ -25,10 +25,8 @@
                 },
                 error => {
                     Materialize.toast("Houston, we have a problem!!", 1500);
-                    this.errorMessage = error;
                 });
         })();
-
         (this.getUserFaqs =()=> {
             const promise = FaqService.getUserFaq();
             promise.then(
@@ -39,10 +37,8 @@
                 },
                 error => {
                     Materialize.toast("Houston, we have a problem!!", 1500);
-                    this.errorMessage = error;
                 });
         })();
-
         this.submit =()=> {
             // intialize the error message
             this.errorMessage = null;
@@ -55,7 +51,6 @@
             };
             //making a promise aka response
             const promise = FaqService.submitFaq(submitFaqRequest);
-
             promise.then(
                 response => {
                     Materialize.toast("FAQ Posted Successfully", 1000);
@@ -63,7 +58,6 @@
                 },
                 error => {
                     Materialize.toast("Error", 1500);
-                    this.errorMessage = error;
                 });
         };
 
@@ -72,14 +66,11 @@
             promise.then(
                 response => {
                     Materialize.toast("Log Out Successful", 1000);
-                    setTimeout('window.location = "../2-LogIn Page/login.html"', 1200);
-                    
+                    setTimeout('window.location = "../2-LogIn Page/login.html"', 1200);   
                 },
                 error => {
                     Materialize.toast("Houston, we have a problem!!", 1500);
-                    this.errorMessage = error;
                 });
         }
-
     };
 })();

@@ -4,9 +4,9 @@
     angular.module('QuizWrapApp')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ["LoginService"];
+    LoginController.$inject = ['LoginService','$state', '$scope'];
 
-    function LoginController(LoginService) {
+    function LoginController(LoginService, $state, $scope) {
         this.pword = "#1groceryeate";
         this.email = "kevingates@eb.com";
 
@@ -20,10 +20,11 @@
             promise.then(
                 response => {
                     Materialize.toast("Login Successful!", 1000);
-                    setTimeout('window.location = "../3-Home Page/home.html"', 1200);
+                    $scope.$emit('User logged in', this.userName);
+                    $state.go('home');
                 },
                 error => {
-                    Materialize.toast("Houston, we have a problem!!", 1500);
+                    Materialize.toast("Houston, we have a problems!!", 1500);
                 });
         };
     };

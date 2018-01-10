@@ -6,19 +6,15 @@
     
     const api = "https://pacoima-ypi.azurewebsites.net/api/";
     
-    HomeService.$inject = ["$http", "$q"]
+    HomeService.$inject = ["$http"]
 
-    function HomeService($http, $q) {
+    function HomeService($http) {
         this.getName = () => {
             const promise = $http({
                 method: "GET",
                 url: api + "people/currentuser",
                 withCredentials: true
             })
-            .then(
-                null,
-                error => $q.reject(error.data.message || error.data.errors[0])
-                );
             return promise;
         };
 
@@ -28,10 +24,6 @@
                 url: api + "users/logout",
                 withCredentials: true
             })
-            .then(
-                null,
-                error => $q.reject(error.data.message || error.data.errors[0])
-                );
             return promise;
         };
     }
