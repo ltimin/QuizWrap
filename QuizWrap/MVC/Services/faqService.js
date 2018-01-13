@@ -42,7 +42,16 @@
         this.getIdUserFaq = () =>{
             const promise = $http({
                 method: "GET",
-                url: api + "faqs/user",
+                url: api + "faqs/" + id,
+                withCredentials: true
+            })
+            return promise;
+        };
+        //Deleting Card
+        this.deleteCard = (id) =>{
+            const promise = $http({
+                method: "DELETE",
+                url: api + "faqs/" + id,
                 withCredentials: true
             })
             return promise;

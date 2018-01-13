@@ -43,3 +43,6 @@ input[type=email]:not(.browser-default):focus:not([readonly]) {
     border-bottom: 1px solid #808080 !important;
     box-shadow: 0 1px 0 0 #F5CECECE !important;
 }
+.tabs .indicator {
+    background-color: #d32f2f;
+}

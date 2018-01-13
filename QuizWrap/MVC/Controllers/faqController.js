@@ -4,15 +4,15 @@
     angular.module('QuizWrapApp')
         .controller('FaqController', FaqController);
 
-    FaqController.$inject = ['FaqService',"HomeService", '$timeout','$state'];
+    FaqController.$inject = ['FaqService',"HomeService", '$timeout','$state', '$scope'];
     
-    function FaqController(FaqService, HomeService, $timeout, $state) {
+    function FaqController(FaqService, HomeService, $timeout, $state, $scope, $index) {
         //Materialize JQuery//
         $(".button-collapse").sideNav();
         $('ul.tabs').tabs();
         $('ul.tabs').tabs('select_tab', 'tab_id');
         $('.modal').modal();
-        
+
         (this.getFaq =()=> {
             const promise = FaqService.getFaqCategories();
             promise.then(
@@ -31,17 +31,44 @@
             const promise = FaqService.getUserFaq();
             promise.then(
                 response => {
-                    let fam = response.data.items;
-                    fam.sort(function(a,b) {return a['faqCategoryId'] - b['faqCategoryId'] || a['displayOrder'] - b['displayOrder']});
-                    this.faqList = fam;
-                },
+                    const faqData =  response.data.items;
+                    if(faqData) {
+                        //If nothing is in the faq list
+                    this.categories = {};
+                    for(let i of faqData) {
+                        if(!this.categories[i.category]){
+                        this.categories[i.category] = [];
+                        }
+                        this.categories[i.category].push(i);
+                    };
+                }; 
+            },
                 error => {
-                    Materialize.toast("Houston, we have a problem!!", 1500);
+                    Materialize.toast("Error|getUserFaqs in FaqController", 1500);
                 });
         })();
+        this.removeFaq =(item, $index)=>{
+            let id = item.id;
+            const promise = FaqService.deleteCard(id);
+            promise.then(
+                response => {
+                    Materialize.toast("FAQ Deleted", 1000);
+                   let fam = this.categories[this.selectedCategory];
+                   fam.splice($index, 1);
+                   
+                   if(!this.categories[item.category]){
+                       this.categories[item.category] = [];
+                   };
+                   this.categories[item.category].push(item); 
+                   console.log(item);
+            }, 
+                error => {
+                    Materialize.toast("Error on Delete", 1500);
+                }
+            )    
+        };
         this.submit =()=> {
-            // intialize the error message
-            this.errorMessage = null;
+
             // gathering request data
             const submitFaqRequest = {
                 faqCategoryId: this.category.id,
@@ -54,7 +81,8 @@
             promise.then(
                 response => {
                     Materialize.toast("FAQ Posted Successfully", 1000);
-                    setTimeout('', 1200);
+                    this.getUserFaqs();
+                    
                 },
                 error => {
                     Materialize.toast("Error", 1500);

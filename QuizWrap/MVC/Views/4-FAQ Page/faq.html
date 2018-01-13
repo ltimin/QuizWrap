@@ -3,11 +3,13 @@
 <div ng-controller="FaqController as fc">
     <br>
         <div class="row">
-            <div class="col s3 offset-s3">
-                    <ul class="tabs"> 
-                <li class="tab col s3" ng-repeat="categoryName in fc.faqList">
-                    <a href="#">{{categoryName.category}}</a>
-                </li>   
+            <div class="col s12">
+                    <ul class="tabs tab-demo tabs-fixed-width z-depth-1" >
+                <li class="tab" ng-repeat="(category, faq) in fc.categories">
+                    <a href="#"ng-click="fc.selectedCategory = category">
+                        {{category}}
+                    </a>
+                </li>
                     </ul>
         </div>
     </div>
@@ -60,45 +62,28 @@
         </div>
 <!-- FAQ cards -->
     <div class="row">
-        <div class="col s12 m4 l4 faqList">
-          <div class="card grey darken-4">
-            <div class="card-content white-text">
-              <h4 >Guard</h4>
-              <h6>Question:</h6>  
-              <p >I am a very simple card. I am good at containing small bits of information.</p>
-              <h6>Answer:</h6>
-              <p >I am convenient because I require little markup to use effectively.</p>
-              <div class="col s12 m4 l4 right offset-s12">
-                    <h6>Display Order: <span id="DOtext"> 6</span></h6>
-              </div>
-              <br>
-            </div>
-            <div class="card-action">
-              <a href="#" id="edit">Edit</a>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
-            </div>
-          </div>
-          </div>
-          
-          <div class="col s12 m4 l4" ng-repeat="item in fc.faqList | filter:{category: item.category}">
-                <div class="card grey darken-4">
-                  <div class="card-content white-text">
-                    <span class="card-title"></span>
-                    <h4 ng-model="fc.userCategory" >{{item.category}}</h4>
-                    <h6>Question:</h6>  
-                    <p ng-model="fc.userQuestion"></p>
-                    <h6>Answer:</h6>
-                    <p ng-model="fc.userAnswer"></p>
-                    <h6 ng-model="fc.userDisplayOrder"></h6>
-                  </div>
-                  <div class="card-action">
-                    <a href="#" id="edit">Edit</a>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
-                  </div>
+              <div class="col s12 m4 l4" ng-repeat="item in fc.categories[fc.selectedCategory]" >
+                  <div class="card grey darken-4" ng-hide="fc.isInvincible">
+                      <div class="card-content white-text">
+                          <span class="card-title"></span>
+                          <h4>{{item.category}}</h4>
+                          <h6>Question:</h6>  
+                          <p>{{item.question}}</p>
+                          <h6>Answer:</h6>
+                          <p>{{item.answer}}</p>
+                          <div class="col s12 m4 l4 right offset-s12">
+                              <h6>Display Order: <span class="DOtext">{{item.displayOrder}}</span></h6>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="card-action">
+                            <a href="#" id="edit">Edit</a>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red" ng-click="fc.removeFaq(item, $index)"><i class="material-icons">delete</i></a>
+                        </div>
+                    </div>
                 </div>
-                </div>
-          <!--End of Row-->
         </div>
+        <!--End of Faq Cards Row-->
 </div>
 
-
+       
